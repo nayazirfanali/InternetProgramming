@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simple Drag and Drop</title>
+    <style>
+        .container {
+            width: 200px;
+            height: 200px;
+            border: 2px dashed #ccc;
+            margin: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+        .draggable {
+            padding: 10px;
+            background-color: #4CAF50;
+            color: white;
+            margin: 5px;
+            cursor: grab;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container" id="source">
+        <div class="draggable" draggable="true">Drag me!</div>
+    </div>
+
+    <div class="container" id="target">
+        Drop here!
+    </div>
+
+    <script>
+        const draggable = document.querySelector('.draggable');
+        const target = document.getElementById('target');
+
+        draggable.addEventListener('dragstart', () => {
+            draggable.classList.add('dragging');
+        });
+
+        draggable.addEventListener('dragend', () => {
+            draggable.classList.remove('dragging');
+        });
+
+        target.addEventListener('dragover', (e) => {
+            e.preventDefault(); // Necessary to allow dropping
+        });
+
+        target.addEventListener('drop', () => {
+            target.appendChild(draggable);
+        });
+    </script>
+
+</body>
+</html>
