@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Show JSON Data Example</title>
+</head>
+<body>
+
+    <h1>Show JSON Data Example</h1>
+    <button id="fetchDataButton">Fetch Data</button>
+    <div id="jsonDataDisplay"></div>
+
+    <script>
+        // Simulate fetching JSON data from a server
+        function fetchJsonDataFromServer() {
+            return new Promise((resolve) => {
+                setTimeout(() => {
+                    const jsonData = {
+                        users: [
+                            { name: "Alice", age: 30, city: "Wonderland" },
+                            { name: "Bob", age: 25, city: "Builderland" }
+                        ]
+                    };
+                    resolve(jsonData);
+                }, 1000); // Simulate network delay
+            });
+        }
+
+        // Handle button click to fetch and display JSON data
+        document.getElementById('fetchDataButton').onclick = async function() {
+            const jsonData = await fetchJsonDataFromServer();
+            const displayDiv = document.getElementById('jsonDataDisplay');
+            displayDiv.innerHTML = ""; // Clear previous data
+
+            // Display the JSON data
+            jsonData.users.forEach(user => {
+                displayDiv.innerHTML += `<p>Name: ${user.name}, Age: ${user.age}, City: ${user.city}</p>`;
+            });
+        };
+    </script>
+
+</body>
+</html>

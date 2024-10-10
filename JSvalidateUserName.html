@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Input Validation</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        input {
+            padding: 10px;
+            margin: 10px 0;
+            width: 250px;
+        }
+        button {
+            padding: 10px 15px;
+            cursor: pointer;
+        }
+        .output {
+            margin-top: 20px;
+            font-weight: bold;
+        }
+        .error {
+            color: red;
+        }
+        .success {
+            color: green;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>User Input Validation Form</h1>
+
+    <label for="nameInput">Name:</label>
+    <input type="text" id="nameInput" placeholder="Your name" required>
+    
+    <label for="phoneInput">Phone Number:</label>
+    <input type="text" id="phoneInput" placeholder="123-456-7890" required>
+    
+    <label for="emailInput">Email:</label>
+    <input type="text" id="emailInput" placeholder="example@mail.com" required>
+    
+    <label for="passwordInput">Password:</label>
+    <input type="password" id="passwordInput" placeholder="Your password" required>
+    
+    <button onclick="validateInputs()">Submit</button>
+
+    <div id="output" class="output"></div>
+
+    <script>
+        function validateInputs() {
+            const name = document.getElementById('nameInput').value;
+            const phone = document.getElementById('phoneInput').value;
+            const email = document.getElementById('emailInput').value;
+            const password = document.getElementById('passwordInput').value;
+            const outputDiv = document.getElementById('output');
+            outputDiv.innerHTML = ''; // Clear previous output
+
+            // Regular Expressions
+            const nameRegex = /^[a-zA-Z\s]{2,}$/; // Name: at least 2 letters
+            const phoneRegex = /^\d{3}-\d{3}-\d{4}$/; // Phone: 123-456-7890
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/; // Simple email validation
+            const passwordRegex = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{6,}$/; // Password: min 6 chars, at least 1 letter and 1 number
+
+            let isValid = true;
+
+            // Validate Name
+            if (!nameRegex.test(name)) {
+                outputDiv.innerHTML += '<div class="error">Invalid name. Please enter at least 2 letters.</div>';
+                isValid = false;
+            }
+
+            // Validate Phone Number
+            if (!phoneRegex.test(phone)) {
+                outputDiv.innerHTML += '<div class="error">Invalid phone number. Use format: 123-456-7890.</div>';
+                isValid = false;
+            }
+
+            // Validate Email
+            if (!emailRegex.test(email)) {
+                outputDiv.innerHTML += '<div class="error">Invalid email address.</div>';
+                isValid = false;
+            }
+
+            // Validate Password
+            if (!passwordRegex.test(password)) {
+                outputDiv.innerHTML += '<div class="error">Invalid password. Minimum 6 characters, at least 1 letter and 1 number.</div>';
+                isValid = false;
+            }
+
+            // If all inputs are valid
+            if (isValid) {
+                outputDiv.innerHTML = '<div class="success">All inputs are valid!</div>';
+            }
+        }
+    </script>
+
+</body>
+</html>

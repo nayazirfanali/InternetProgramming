@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Input and Output Example</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        input {
+            padding: 10px;
+            margin-right: 10px;
+        }
+        button {
+            padding: 10px 15px;
+        }
+        #output {
+            margin-top: 20px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Welcome to the Input and Output Application</h1>
+    <label for="nameInput">Enter your name:</label>
+    <input type="text" id="nameInput" placeholder="Your name here">
+    <button onclick="greetUser()">Submit</button>
+
+    <div id="output"></div>
+
+    <script>
+        function greetUser() {
+            // Get the input value
+            const name = document.getElementById('nameInput').value;
+
+            // Check if the input is empty
+            if (name.trim() === "") {
+                document.getElementById('output').innerText = "Please enter your name.";
+            } else {
+                // Output greeting message
+                document.getElementById('output').innerText = `Hello, ${name}! Welcome to our application!`;
+            }
+        }
+    </script>
+
+</body>
+</html>

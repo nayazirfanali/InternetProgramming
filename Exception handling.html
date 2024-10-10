@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exception Handling Example</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        input {
+            padding: 10px;
+            margin: 10px 0;
+            width: 150px;
+        }
+        button {
+            padding: 10px 15px;
+            cursor: pointer;
+        }
+        .output {
+            margin-top: 20px;
+            font-weight: bold;
+        }
+        .error {
+            color: red;
+        }
+        .success {
+            color: green;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Exception Handling Example</h1>
+
+    <label for="numberInput">Enter a number to divide 100:</label>
+    <input type="text" id="numberInput" placeholder="Enter a number">
+    
+    <button onclick="performDivision()">Submit</button>
+
+    <div id="output" class="output"></div>
+
+    <script>
+        function performDivision() {
+            const numberInput = document.getElementById('numberInput').value;
+            const outputDiv = document.getElementById('output');
+            outputDiv.innerHTML = ''; // Clear previous output
+
+            try {
+                // Parse the input value as a number
+                const number = parseFloat(numberInput);
+                
+                // Check for invalid input
+                if (isNaN(number)) {
+                    throw new Error('Please enter a valid number.');
+                }
+                
+                // Attempt to perform the division
+                if (number === 0) {
+                    throw new Error('Division by zero is not allowed.');
+                }
+
+                const result = 100 / number;
+                outputDiv.innerHTML = `<div class="success">Result: 100 / ${number} = ${result}</div>`;
+            } catch (error) {
+                // Handle the error
+                outputDiv.innerHTML = `<div class="error">${error.message}</div>`;
+            }
+        }
+    </script>
+
+</body>
+</html>

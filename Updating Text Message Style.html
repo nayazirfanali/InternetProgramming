@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Update Text Style Example</title>
+    <style>
+        #message {
+            padding: 10px;
+            border: 1px solid #ccc;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Update Text Style Example</h1>
+    <button id="fetchMessageButton">Fetch Message</button>
+    
+    <div id="message">This is the original message.</div>
+
+    <script>
+        // Simulate fetching data from a server
+        function fetchMessageFromServer() {
+            return new Promise((resolve) => {
+                setTimeout(() => {
+                    resolve({
+                        text: "This is the updated message from the server!",
+                        style: {
+                            color: 'blue',
+                            fontWeight: 'bold',
+                            fontSize: '20px'
+                        }
+                    });
+                }, 1000); // Simulate network delay
+            });
+        }
+
+        // Handle button click to fetch message
+        document.getElementById('fetchMessageButton').onclick = async function() {
+            const messageData = await fetchMessageFromServer();
+            const messageElement = document.getElementById('message');
+
+            // Update message text and style
+            messageElement.innerText = messageData.text;
+            messageElement.style.color = messageData.style.color;
+            messageElement.style.fontWeight = messageData.style.fontWeight;
+            messageElement.style.fontSize = messageData.style.fontSize;
+        };
+    </script>
+
+</body>
+</html>

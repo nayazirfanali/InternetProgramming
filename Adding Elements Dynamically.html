@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dynamic Element Addition</title>
+    <style>
+        #itemList {
+            margin-top: 20px;
+            list-style-type: none;
+            padding: 0;
+        }
+        li {
+            padding: 5px;
+            background-color: lightyellow;
+            margin: 5px 0;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Add Items to the List</h1>
+    <input type="text" id="newItemInput" placeholder="Enter new item">
+    <button id="addItemButton">Add Item</button>
+
+    <ul id="itemList"></ul>
+
+    <script>
+        // Add new item to the list
+        document.getElementById('addItemButton').onclick = function() {
+            const input = document.getElementById('newItemInput');
+            const newItemText = input.value.trim();
+            const itemList = document.getElementById('itemList');
+
+            // Validate input
+            if (newItemText === "") {
+                alert("Please enter a valid item.");
+                return;
+            }
+
+            // Create a new list item
+            const newListItem = document.createElement('li');
+            newListItem.textContent = newItemText;
+
+            // Add the new item to the list
+            itemList.appendChild(newListItem);
+
+            // Clear the input field
+            input.value = '';
+        };
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Event Handling Example</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        .styled {
+            color: white;
+            background-color: blue;
+            padding: 10px;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Event Handling Example</h1>
+    
+    <div id="textElement">Click the button to change my style!</div>
+    
+    <button id="changeStyleButton">Change Style</button>
+
+    <h2>Calculator</h2>
+    <label for="num1">Number 1:</label>
+    <input type="number" id="num1" placeholder="Enter first number">
+    
+    <label for="num2">Number 2:</label>
+    <input type="number" id="num2" placeholder="Enter second number">
+    
+    <button id="calculateButton">Calculate Sum</button>
+    
+    <div id="calculationResult"></div>
+
+    <script>
+        // Function to change the style of an HTML element
+        document.getElementById('changeStyleButton').onclick = function() {
+            const textElement = document.getElementById('textElement');
+            textElement.classList.toggle('styled'); // Toggle the style
+        };
+
+        // Function to perform calculation
+        document.getElementById('calculateButton').onclick = function() {
+            const num1 = parseFloat(document.getElementById('num1').value);
+            const num2 = parseFloat(document.getElementById('num2').value);
+            const resultDiv = document.getElementById('calculationResult');
+
+            // Perform validation
+            if (isNaN(num1) || isNaN(num2)) {
+                resultDiv.innerHTML = 'Please enter valid numbers.';
+                return;
+            }
+
+            const sum = num1 + num2;
+            resultDiv.innerHTML = `The sum of ${num1} and ${num2} is: ${sum}`;
+        };
+    </script>
+
+</body>
+</html>

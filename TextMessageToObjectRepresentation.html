@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Receive Message Example</title>
+</head>
+<body>
+
+    <h1>Receive Message Example</h1>
+    <button id="receiveMessageButton">Receive Message</button>
+    <div id="messageDisplay"></div>
+
+    <script>
+        // Simulate receiving a message from a server
+        function receiveMessageFromServer() {
+            return new Promise((resolve) => {
+                setTimeout(() => {
+                    const jsonMessage = '{"name": "Alice", "age": 30, "city": "Wonderland"}';
+                    resolve(jsonMessage);
+                }, 1000); // Simulate network delay
+            });
+        }
+
+        // Handle button click to receive and display the message
+        document.getElementById('receiveMessageButton').onclick = async function() {
+            const jsonMessage = await receiveMessageFromServer();
+            const messageObject = JSON.parse(jsonMessage); // Convert JSON string to object
+
+            // Display the received object
+            document.getElementById('messageDisplay').innerText = 
+                `Received: Name - ${messageObject.name}, Age - ${messageObject.age}, City - ${messageObject.city}`;
+        };
+    </script>
+
+</body>
+</html>

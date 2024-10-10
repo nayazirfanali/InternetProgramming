@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Send Message Example</title>
+</head>
+<body>
+
+    <h1>Send Message Example</h1>
+    <input type="text" id="nameInput" placeholder="Name">
+    <input type="number" id="ageInput" placeholder="Age">
+    <input type="text" id="cityInput" placeholder="City">
+    <button id="sendMessageButton">Send Message</button>
+    <div id="sendResult"></div>
+
+    <script>
+        // Simulate sending a message to a server
+        function sendMessageToServer(messageObject) {
+            return new Promise((resolve) => {
+                setTimeout(() => {
+                    console.log("Sending to server:", JSON.stringify(messageObject)); // Simulate sending data
+                    resolve("Message sent successfully!");
+                }, 1000); // Simulate network delay
+            });
+        }
+
+        // Handle button click to send the message
+        document.getElementById('sendMessageButton').onclick = async function() {
+            const messageObject = {
+                name: document.getElementById('nameInput').value,
+                age: parseInt(document.getElementById('ageInput').value),
+                city: document.getElementById('cityInput').value
+            };
+
+            const result = await sendMessageToServer(messageObject); // Send the object as JSON
+            document.getElementById('sendResult').innerText = result;
+        };
+    </script>
+
+</body>
+</html>

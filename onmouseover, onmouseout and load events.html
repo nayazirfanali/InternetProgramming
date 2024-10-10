@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mouse Events Example</title>
+    <style>
+        #hoverElement {
+            width: 200px;
+            height: 100px;
+            background-color: lightgray;
+            text-align: center;
+            line-height: 100px;
+            margin: 20px;
+        }
+        #message {
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Mouse Events Example</h1>
+    
+    <div id="hoverElement">Hover over me!</div>
+    <div id="message"></div>
+
+    <script>
+        // Handle load event
+        window.onload = function() {
+            document.getElementById('message').innerText = 'Page loaded successfully!';
+        };
+
+        // Handle mouse over event
+        document.getElementById('hoverElement').onmouseover = function() {
+            this.style.backgroundColor = 'lightblue';
+            document.getElementById('message').innerText = 'Mouse is over the element!';
+        };
+
+        // Handle mouse out event
+        document.getElementById('hoverElement').onmouseout = function() {
+            this.style.backgroundColor = 'lightgray';
+            document.getElementById('message').innerText = 'Mouse has left the element.';
+        };
+    </script>
+
+</body>
+</html>
